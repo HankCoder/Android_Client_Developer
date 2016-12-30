@@ -3,15 +3,13 @@ package com.example.ele_me.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.widget.SlidingPaneLayout;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.example.ele_me.R;
@@ -52,10 +50,10 @@ public class DianPingWebActivity extends Activity {
 	}
 
 	private void initView() {
-		above_tittle.setText("¸½½üÍÅ¹º");
+		above_tittle.setText("é™„è¿‘å›¢è´­");
 		head_left.setImageResource(R.drawable.abc_ic_ab_back_holo_dark);
 		mWebView.loadUrl("http://m.dianping.com/tuan");
-		// Ê¹ÓÃwebviewä¯ÀÀÍøÒ³
+		// ä½¿ç”¨webviewæµè§ˆç½‘é¡µ
 		mWebView.setWebChromeClient(new WebChromeClient() {
 			public void onProgressChanged(WebView view, int progress) {
 			}

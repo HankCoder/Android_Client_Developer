@@ -9,24 +9,24 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
 /**
- * ScrollView·´µ¯Ğ§¹ûµÄÊµÏÖ
+ * ScrollViewåå¼¹æ•ˆæœçš„å®ç°
  */
 public class BounceScrollView extends ScrollView {
-	private View inner;// º¢×ÓView
+	private View inner;// å­©å­View
 
-	private float y;// µã»÷Ê±y×ø±ê
+	private float y;// ç‚¹å‡»æ—¶yåæ ‡
 
-	private Rect normal = new Rect();// ¾ØĞÎ(ÕâÀïÖ»ÊÇ¸öĞÎÊ½£¬Ö»ÊÇÓÃÓÚÅĞ¶ÏÊÇ·ñĞèÒª¶¯»­.)
+	private Rect normal = new Rect();// çŸ©å½¢(è¿™é‡Œåªæ˜¯ä¸ªå½¢å¼ï¼Œåªæ˜¯ç”¨äºåˆ¤æ–­æ˜¯å¦éœ€è¦åŠ¨ç”».)
 
-	private boolean isCount = false;// ÊÇ·ñ¿ªÊ¼¼ÆËã
+	private boolean isCount = false;// æ˜¯å¦å¼€å§‹è®¡ç®—
 
 	public BounceScrollView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
 	/***
-	 * ¸ù¾İ XML Éú³ÉÊÓÍ¼¹¤×÷Íê³É.¸Ãº¯ÊıÔÚÉú³ÉÊÓÍ¼µÄ×îºóµ÷ÓÃ£¬ÔÚËùÓĞ×ÓÊÓÍ¼Ìí¼ÓÍêÖ®ºó. ¼´Ê¹×ÓÀà¸²¸ÇÁË onFinishInflate
-	 * ·½·¨£¬Ò²Ó¦¸Ãµ÷ÓÃ¸¸ÀàµÄ·½·¨£¬Ê¹¸Ã·½·¨µÃÒÔÖ´ĞĞ.
+	 * æ ¹æ® XML ç”Ÿæˆè§†å›¾å·¥ä½œå®Œæˆ.è¯¥å‡½æ•°åœ¨ç”Ÿæˆè§†å›¾çš„æœ€åè°ƒç”¨ï¼Œåœ¨æ‰€æœ‰å­è§†å›¾æ·»åŠ å®Œä¹‹å. å³ä½¿å­ç±»è¦†ç›–äº† onFinishInflate
+	 * æ–¹æ³•ï¼Œä¹Ÿåº”è¯¥è°ƒç”¨çˆ¶ç±»çš„æ–¹æ³•ï¼Œä½¿è¯¥æ–¹æ³•å¾—ä»¥æ‰§è¡Œ.
 	 */
 	@Override
 	protected void onFinishInflate() {
@@ -36,7 +36,7 @@ public class BounceScrollView extends ScrollView {
 	}
 
 	/***
-	 * ¼àÌıtouch
+	 * ç›‘å¬touch
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
@@ -48,94 +48,94 @@ public class BounceScrollView extends ScrollView {
 	}
 
 	/***
-	 * ´¥ÃşÊÂ¼ş
-	 * 
+	 * è§¦æ‘¸äº‹ä»¶
+	 *
 	 * @param ev
 	 */
 	public void commOnTouchEvent(MotionEvent ev) {
 		int action = ev.getAction();
 		switch (action) {
-		case MotionEvent.ACTION_DOWN:
-			break;
-		case MotionEvent.ACTION_UP:
-			// ÊÖÖ¸ËÉ¿ª.
-			if (isNeedAnimation()) {
-				animation();
-				isCount = false;
-			}
-			break;
-		/***
-		 * ÅÅ³ı³öµÚÒ»´ÎÒÆ¶¯¼ÆËã£¬ÒòÎªµÚÒ»´ÎÎŞ·¨µÃÖªy×ø±ê£¬ ÔÚMotionEvent.ACTION_DOWNÖĞ»ñÈ¡²»µ½£¬
-		 * ÒòÎª´ËÊ±ÊÇMyScrollViewµÄtouchÊÂ¼ş´«µİµ½µ½ÁËLIstViewµÄº¢×ÓitemÉÏÃæ.ËùÒÔ´ÓµÚ¶ş´Î¼ÆËã¿ªÊ¼.
-		 * È»¶øÎÒÃÇÒ²Òª½øĞĞ³õÊ¼»¯£¬¾ÍÊÇµÚÒ»´ÎÒÆ¶¯µÄÊ±ºòÈÃ»¬¶¯¾àÀë¹é0. Ö®ºó¼ÇÂ¼×¼È·ÁË¾ÍÕı³£Ö´ĞĞ.
-		 */
-		case MotionEvent.ACTION_MOVE:
-			final float preY = y;// °´ÏÂÊ±µÄy×ø±ê
-			float nowY = ev.getY();// Ê±Ê±y×ø±ê
-			int deltaY = (int) (preY - nowY);// »¬¶¯¾àÀë
-			if (!isCount) {
-				deltaY = 0; // ÔÚÕâÀïÒª¹é0.
-			}
-
-			y = nowY;
-			// µ±¹ö¶¯µ½×îÉÏ»òÕß×îÏÂÊ±¾Í²»»áÔÙ¹ö¶¯£¬ÕâÊ±ÒÆ¶¯²¼¾Ö
-			if (isNeedMove()) {
-				// ³õÊ¼»¯Í·²¿¾ØĞÎ
-				if (normal.isEmpty()) {
-					// ±£´æÕı³£µÄ²¼¾ÖÎ»ÖÃ
-					normal.set(inner.getLeft(), inner.getTop(),
-							inner.getRight(), inner.getBottom());
+			case MotionEvent.ACTION_DOWN:
+				break;
+			case MotionEvent.ACTION_UP:
+				// æ‰‹æŒ‡æ¾å¼€.
+				if (isNeedAnimation()) {
+					animation();
+					isCount = false;
 				}
-//				Log.e("jj", "¾ØĞÎ£º" + inner.getLeft() + "," + inner.getTop()
-//						+ "," + inner.getRight() + "," + inner.getBottom());
-				// ÒÆ¶¯²¼¾Ö
-				inner.layout(inner.getLeft(), inner.getTop() - deltaY / 2,
-						inner.getRight(), inner.getBottom() - deltaY / 2);
-			}
-			isCount = true;
-			break;
+				break;
+			/***
+			 * æ’é™¤å‡ºç¬¬ä¸€æ¬¡ç§»åŠ¨è®¡ç®—ï¼Œå› ä¸ºç¬¬ä¸€æ¬¡æ— æ³•å¾—çŸ¥yåæ ‡ï¼Œ åœ¨MotionEvent.ACTION_DOWNä¸­è·å–ä¸åˆ°ï¼Œ
+			 * å› ä¸ºæ­¤æ—¶æ˜¯MyScrollViewçš„touchäº‹ä»¶ä¼ é€’åˆ°åˆ°äº†LIstViewçš„å­©å­itemä¸Šé¢.æ‰€ä»¥ä»ç¬¬äºŒæ¬¡è®¡ç®—å¼€å§‹.
+			 * ç„¶è€Œæˆ‘ä»¬ä¹Ÿè¦è¿›è¡Œåˆå§‹åŒ–ï¼Œå°±æ˜¯ç¬¬ä¸€æ¬¡ç§»åŠ¨çš„æ—¶å€™è®©æ»‘åŠ¨è·ç¦»å½’0. ä¹‹åè®°å½•å‡†ç¡®äº†å°±æ­£å¸¸æ‰§è¡Œ.
+			 */
+			case MotionEvent.ACTION_MOVE:
+				final float preY = y;// æŒ‰ä¸‹æ—¶çš„yåæ ‡
+				float nowY = ev.getY();// æ—¶æ—¶yåæ ‡
+				int deltaY = (int) (preY - nowY);// æ»‘åŠ¨è·ç¦»
+				if (!isCount) {
+					deltaY = 0; // åœ¨è¿™é‡Œè¦å½’0.
+				}
 
-		default:
-			break;
+				y = nowY;
+				// å½“æ»šåŠ¨åˆ°æœ€ä¸Šæˆ–è€…æœ€ä¸‹æ—¶å°±ä¸ä¼šå†æ»šåŠ¨ï¼Œè¿™æ—¶ç§»åŠ¨å¸ƒå±€
+				if (isNeedMove()) {
+					// åˆå§‹åŒ–å¤´éƒ¨çŸ©å½¢
+					if (normal.isEmpty()) {
+						// ä¿å­˜æ­£å¸¸çš„å¸ƒå±€ä½ç½®
+						normal.set(inner.getLeft(), inner.getTop(),
+								inner.getRight(), inner.getBottom());
+					}
+//				Log.e("jj", "çŸ©å½¢ï¼š" + inner.getLeft() + "," + inner.getTop()
+//						+ "," + inner.getRight() + "," + inner.getBottom());
+					// ç§»åŠ¨å¸ƒå±€
+					inner.layout(inner.getLeft(), inner.getTop() - deltaY / 2,
+							inner.getRight(), inner.getBottom() - deltaY / 2);
+				}
+				isCount = true;
+				break;
+
+			default:
+				break;
 		}
 	}
 
 	/***
-	 * »ØËõ¶¯»­
+	 * å›ç¼©åŠ¨ç”»
 	 */
 	public void animation() {
-		// ¿ªÆôÒÆ¶¯¶¯»­
+		// å¼€å¯ç§»åŠ¨åŠ¨ç”»
 		TranslateAnimation ta = new TranslateAnimation(0, 0, inner.getTop(),
 				normal.top);
 		ta.setDuration(200);
 		inner.startAnimation(ta);
-		// ÉèÖÃ»Øµ½Õı³£µÄ²¼¾ÖÎ»ÖÃ
+		// è®¾ç½®å›åˆ°æ­£å¸¸çš„å¸ƒå±€ä½ç½®
 		inner.layout(normal.left, normal.top, normal.right, normal.bottom);
 
-//		Log.e("jj", "»Ø¹é£º" + normal.left + "," + normal.top + "," + normal.right
+//		Log.e("jj", "å›å½’ï¼š" + normal.left + "," + normal.top + "," + normal.right
 //				+ "," + normal.bottom);
 
 		normal.setEmpty();
 
 	}
 
-	// ÊÇ·ñĞèÒª¿ªÆô¶¯»­
+	// æ˜¯å¦éœ€è¦å¼€å¯åŠ¨ç”»
 	public boolean isNeedAnimation() {
 		return !normal.isEmpty();
 	}
 
 	/***
-	 * ÊÇ·ñĞèÒªÒÆ¶¯²¼¾Ö inner.getMeasuredHeight():»ñÈ¡µÄÊÇ¿Ø¼şµÄ×Ü¸ß¶È
-	 * 
-	 * getHeight()£º»ñÈ¡µÄÊÇÆÁÄ»µÄ¸ß¶È
-	 * 
+	 * æ˜¯å¦éœ€è¦ç§»åŠ¨å¸ƒå±€ inner.getMeasuredHeight():è·å–çš„æ˜¯æ§ä»¶çš„æ€»é«˜åº¦
+	 *
+	 * getHeight()ï¼šè·å–çš„æ˜¯å±å¹•çš„é«˜åº¦
+	 *
 	 * @return
 	 */
 	public boolean isNeedMove() {
 		int offset = inner.getMeasuredHeight() - getHeight();
 		int scrollY = getScrollY();
 //		Log.e("jj", "scrolly=" + scrollY);
-		// 0ÊÇ¶¥²¿£¬ºóÃæÄÇ¸öÊÇµ×²¿
+		// 0æ˜¯é¡¶éƒ¨ï¼Œåé¢é‚£ä¸ªæ˜¯åº•éƒ¨
 		if (scrollY == 0 || scrollY == offset) {
 			return true;
 		}

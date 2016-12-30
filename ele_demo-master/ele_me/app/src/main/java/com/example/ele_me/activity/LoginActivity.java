@@ -3,15 +3,11 @@ package com.example.ele_me.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.widget.SlidingPaneLayout;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.example.ele_me.R;

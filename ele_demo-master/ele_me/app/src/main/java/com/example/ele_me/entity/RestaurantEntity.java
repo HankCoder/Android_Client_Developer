@@ -5,17 +5,18 @@ import java.io.Serializable;
 public class RestaurantEntity implements Serializable{
 
 	private static final long serialVersionUID = -6453430021123563721L;
-	public String logo = "";//商户logo
-	public String name= "";//商户名称
-	public int rate_numbers= 0;//星星数量
-	public String buy_nums= "";//售出数量
-	public String item_msg= "";//商户信息
-	public String promotion= "";//商户推广信息
-	public Boolean is_rest= false;//商户是否休息
-	public Boolean is_favor= false;//是否添加关注
-	public Boolean is_half= false;//是否半价
-	public Boolean is_mins= false;//是否减价
-	
+	public String logo = "";//鍟嗘埛logo
+	public String name= "";//鍟嗘埛鍚嶇О
+	public int rate_numbers= 0;//鏄熸槦鏁伴噺
+	public String buy_nums= "";//鍞嚭鏁伴噺
+	public String item_msg= "";//鍟嗘埛淇℃伅
+	public String promotion= "";//鍟嗘埛鎺ㄥ箍淇℃伅
+	public Boolean is_rest= false;//鍟嗘埛鏄惁浼戞伅
+	public Boolean is_favor= false;//鏄惁娣诲姞鍏虫敞
+	public Boolean is_half= false;//鏄惁鍗婁环
+	public Boolean is_mins= false;//鏄惁鍑忎环
+
+
 	public String getLogo() {
 		return logo;
 	}

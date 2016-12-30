@@ -87,19 +87,19 @@ public class HomePageRestaurantAdapter extends BaseAdapter{
         holder.buy_nums.setText(mlist.get(position).getBuy_nums());
         holder.item_msg.setText(mlist.get(position).getItem_msg());
         holder.rate.setNumStars(mlist.get(position).getRate_numbers());
-        
-        //Èç¹ûÓĞÍÆ¹ãĞÅÏ¢¾ÍÌí¼Ó
+
+		//å¦‚æœæœ‰æ¨å¹¿ä¿¡æ¯å°±æ·»åŠ 
         if(!TextUtils.isEmpty(mlist.get(position).getPromotion())){
         	LinearLayout promotionLayout= (LinearLayout) inflater.inflate(R.layout.restaurant_promotion_with_icon_text_view, null);
         	TextView promotionTv = (TextView) promotionLayout.findViewById(R.id.restaurant_promotion_description);
         	TextView promotionIcon = (TextView) promotionLayout.findViewById(R.id.restaurant_promotion_icon);
         	if(mlist.get(position).getIs_half()){
         		promotionIcon.setBackgroundColor(R.color.orange_ff);
-        		promotionIcon.setText("°ë");
+        		promotionIcon.setText("åŠ");
         	}
         	if(mlist.get(position).getIs_mins()){
         		promotionIcon.setBackgroundColor(R.color.red_light);
-        		promotionIcon.setText("¼õ");
+        		promotionIcon.setText("å‡");
         	}
         	promotionTv.setText(mlist.get(position).getPromotion());
         	holder.promotion.addView(promotionLayout);
@@ -112,13 +112,13 @@ public class HomePageRestaurantAdapter extends BaseAdapter{
 	public class ViewHolder {
 		public ImageView logo;
 		public TextView name;
-		public TextView rate_numbers;//ĞÇĞÇÊıÁ¿
-		public TextView buy_nums;//ÊÛ³ö·İÊı
-		public TextView item_msg;//ÆäËûĞÅÏ¢
-		public ImageView rest;//ÊÇ·ñĞİÏ¢
-		public ImageView favor;//ÊÇ·ñÏ²»¶
+		public TextView rate_numbers;//æ˜Ÿæ˜Ÿæ•°é‡
+		public TextView buy_nums;//å”®å‡ºä»½æ•°
+		public TextView item_msg;//å…¶ä»–ä¿¡æ¯
+		public ImageView rest;//æ˜¯å¦ä¼‘æ¯
+		public ImageView favor;//æ˜¯å¦å–œæ¬¢
 		public RatingBar rate;
-		public LinearLayout promotion;//ÍÆ¹ãĞÅÏ¢
+		public LinearLayout promotion;//æ¨å¹¿ä¿¡æ¯
 		
 	}
 

@@ -57,12 +57,12 @@ public class RefreshableListView extends ListView {
         initialize();
     }
 
-    //ÏÂÀ­Ë¢ĞÂ¼àÌı
+    //ä¸‹æ‹‰åˆ·æ–°ç›‘å¬
     public void setOnRefreshListener(final OnRefreshListener l) {
         mListener = l;
     }
 
-    //Íê³ÉË¢ĞÂ
+    //å®Œæˆåˆ·æ–°
     public void completeRefreshing() {
         mProgress.setVisibility(View.INVISIBLE);
         mArrow.setVisibility(View.VISIBLE);
@@ -184,7 +184,7 @@ public class RefreshableListView extends ListView {
         }
     }
 
-    //³õÊ¼»¯ÊÓÍ¼
+    //åˆå§‹åŒ–è§†å›¾
     private void initialize() {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
@@ -228,12 +228,12 @@ public class RefreshableListView extends ListView {
             // If scroll reaches the trigger line, start refreshing
             if (height > mHeaderHeight && !mArrowUp) {
                 mArrow.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.rotate));
-                mText.setText("Ë¢ĞÂÊı¾İ");
+                mText.setText("åˆ·æ–°æ•°æ®");
                 rotateArrow();
                 mArrowUp = true;
             } else if (height < mHeaderHeight && mArrowUp) {
                 mArrow.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.rotate));
-                mText.setText("ÏÂÀ­Ë¢ĞÂ");
+                mText.setText("ä¸‹æ‹‰åˆ·æ–°");
                 rotateArrow();
                 mArrowUp = false;
             }
@@ -253,11 +253,11 @@ public class RefreshableListView extends ListView {
         mArrow.setImageBitmap(bitmap);
     }
 
-    //ÏÂÀ­ËÉ¿ªºó¿ªÊ¼Ë¢ĞÂÊı¾İ
+    //ä¸‹æ‹‰æ¾å¼€åå¼€å§‹åˆ·æ–°æ•°æ®
     private void startRefreshing() {
         mArrow.setVisibility(View.INVISIBLE);
         mProgress.setVisibility(View.VISIBLE);
-        mText.setText("¼ÓÔØ...");
+        mText.setText("åŠ è½½...");
         mIsRefreshing = true;
 
         if (mListener != null) {
